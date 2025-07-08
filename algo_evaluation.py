@@ -4,7 +4,7 @@ import math
 
 import numpy as np
 
-from d_tree_sorted import find_frequent_patterns , generate_association_rules
+from dominant_tree_algo import find_frequent_patterns , generate_association_rules
 
 def calculate_rule_metrics(rules, records):
     total_transactions = len(records)
@@ -38,15 +38,15 @@ def calculate_rule_metrics(rules, records):
 
 # Load dataset
 try:
-    with open('kosarak.dat', 'r') as f:
+    with open('mushroom.dat', 'r') as f:
         records = [line.strip().split() for line in f]
 except FileNotFoundError:
     print("Error: File 'mushroom.dat' not found.")
     exit()
 
 min_confidence = 0.8
-#support_thresholds = list(range(10, 0, -1))
-support_thresholds = np.arange(1.0, 0.5, -0.1)
+support_thresholds = list(range(100, 0, -10))
+#support_thresholds = np.arange(1.0, 0.5, -0.1)
 results = []
 
 for support in support_thresholds:
